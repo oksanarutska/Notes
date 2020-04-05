@@ -1,5 +1,7 @@
 # vue-cli
 
+[#NOTES PAGE](https://oksanarutska.github.io/Notes/)
+
 ## Project setup
 ```
 npm install
