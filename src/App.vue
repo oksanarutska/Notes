@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <notes :notes="notesFilter" :grid="grid" @remove="removeNote" />
+          <notes :notes="notesFilter" :grid="grid" @remove="removeNote" @change="changeTitle" />
         </div>
       </section>
     </div>
@@ -80,24 +80,28 @@ export default {
       search: "",
       note: {
         title: "",
-        descr: ""
+        descr: "",
+        priority: "Standard"
       },
       notes: [
         {
           title: "First Note",
           descr: "Description for First Note",
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "Standard"
         },
 
         {
           title: "Second Note",
           descr: "Description for Second Note",
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "Standard"
         },
         {
           title: "Third Note",
           descr: "Description for Third Note",
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "Standard"
         }
       ]
     };
@@ -117,12 +121,12 @@ export default {
         }
       });
       // Error
-       return array
+      return array;
     }
   },
   methods: {
     addNote() {
-      let { title, descr } = this.note;
+      let { title, descr, priority } = this.note;
       if (title === "") {
         this.message = "Title can`t be empty!";
         return;
@@ -131,14 +135,26 @@ export default {
       this.notes.push({
         title,
         descr,
+        priority,
         date: new Date(Date.now()).toLocaleString()
       });
       this.message = null;
       this.note.title = "";
       this.note.descr = "";
+      this.note.priority = "Standard";
     },
     removeNote(index) {
       this.notes.splice(index, 1);
+    },
+    changeTitle(index) {
+      let note = this.notes.find(function(item, indexNote) {
+        if (indexNote === index) {
+          return item;
+        }
+      });
+      note.editing = true;
+
+      console.log(note);
     }
   }
 };
