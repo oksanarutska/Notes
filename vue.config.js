@@ -1,8 +1,11 @@
+// module.exports = {
+//   publicPath: process.env.NODE_ENV === 'production'
+//     ? '/'
+//     : '/',
+//   assetsDir: '',
+//   productionSourceMap: false,
+//   filenameHashing: true
+// }
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/'
-    : '/',
-  assetsDir: '',
-  productionSourceMap: false,
-  filenameHashing: true
+    publicPath: '/Notes/'
 }
